@@ -1,0 +1,63 @@
+<div style="display: flex; align-items: center;">
+<img src="https://d2j6dbq0eux0bg.cloudfront.net/startersite/images/77229501/1657691468718.jpg" width="150"/>
+
+<h1 style="margin-left: 15px;">User edition mode</h1>
+</div>
+
+
+{{#unless isAdmin}}
+<div style="display: flex; align-items: center;">
+       <form  action="/api/users/current" method ="get">
+    <button type="submit">Profile</button>
+    </form>
+
+<form  style="margin-left: 15px;" id="cart" action="/api/cart/{{current_user._id}}" method="get">
+    <button type="submit" id="cart">Go to Cart</button>
+</form>
+{{/unless}}
+
+
+</div>
+
+
+<div>
+                <h2>This is the current information</h2>
+                <ul id={{users._id}}>
+                    <h2>ID:{{users._id}} Name: {{users.name}}</h2>
+                    <li>Last Name: {{users.last_name}}</li>
+                    <li>email: {{users.email}}</li>
+                    <li>age: {{users.age}} years Old</li>
+                    <li>cart_id:{{users.cart_id}}</li>
+                    <li>role: {{ users.role }}</li>
+                    <li>documents: {{users.documents}}</li>
+                    <li>last connection: {{users.last_connection}}</li>
+                </ul>
+                <div style="display: flex; align-items: center;">
+                <form action="/api/users/edit/{{users._id}}" method="post">
+                <h3>Change User Role to </h3>
+                    <select class="selectpicker" data-style="btn-info" name="selectpicker"  style="margin-left: 15px;">
+                        <option value="user">user</option>
+                        <option value="premium">premium</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                    <button type="submit" value="Submit">Change Role</button>
+                </form>
+                </div>
+                
+                <form id="log_out" action="/api/users/" method="get">
+                <br>
+                    <button type="submit" id="products">Go back </button>
+                </form> 
+                </br>
+</div>
+<br/>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="module" src="/js/users_index.js"></script>
+
+<link rel="stylesheet" href="/css/styles.css">
+

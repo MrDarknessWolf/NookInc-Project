@@ -1,0 +1,67 @@
+<div style="display: flex; align-items: center;">
+<img src="https://d2j6dbq0eux0bg.cloudfront.net/startersite/images/77229501/1657691468718.jpg" width="150"/>
+
+<h1 style="margin-left: 15px;">Do you wish to delete this user???</h1>
+</div>
+
+
+{{#unless isAdmin}}
+<div style="display: flex; align-items: center;">
+       <form  action="/api/users/current" method ="get">
+    <button type="submit">Profile</button>
+    </form>
+
+<form  style="margin-left: 15px;" id="cart" action="/api/cart/{{current_user._id}}" method="get">
+    <button type="submit" id="cart">Go to Cart</button>
+</form>
+{{/unless}}
+
+
+</div>
+
+
+<div>
+
+                <ul id={{users._id}}>
+                    <h2>ID:{{users._id}} Name: {{users.name}}</h2>
+                    <li>Last Name: {{users.last_name}}</li>
+                    <li>email: {{users.email}}</li>
+                    <li>age: {{users.age}} years Old</li>
+                    <li>cart_id:{{users.cart_id}}</li>
+                    <li>role: {{users.role}}</li>
+                    <li>documents: {{users.documents}}</li>
+                    <li>last connection: {{users.last_connection}}</li>
+                </ul>
+                <form id="delete_confirm" action="/api/users/delete/{{users._id}}" method="post">
+                    <button type="submit" id="delete">DELETE USER</button>
+
+                </form>
+                <form id="log_out" action="/api/users/" method="get">
+                    <button type="submit" id="products">Go back </button>
+                </form> 
+                </br>
+</div>
+<br/>
+<div>
+    {{#if products.hasPrevPage}}
+        <a href={{products.prevLink}}><< BACK</a>
+    {{/if}}
+    &nbsp;
+    {{products.page}}
+    &nbsp;  
+     {{#if products.hasNextPage}}
+        <a href={{products.nextLink}}>NEXT >></a>
+    {{/if}} 
+</div>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="module" src="/js/users_index.js"></script>
+
+<link rel="stylesheet" href="/css/styles.css">
+

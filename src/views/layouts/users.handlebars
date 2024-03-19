@@ -1,0 +1,76 @@
+{{#if users.isValid}}
+<div style="display: flex; align-items: center;">
+<img src="https://d2j6dbq0eux0bg.cloudfront.net/startersite/images/77229501/1657691468718.jpg" width="150"/>
+
+<h1 style="margin-left: 15px;">Welcome, {{current_user.name}}</h1>
+</div>
+
+
+{{#unless isAdmin}}
+<div style="display: flex; align-items: center;">
+       <form  action="/api/users/current" method ="get">
+    <button type="submit">Profile</button>
+    </form>
+
+<form  style="margin-left: 15px;" id="cart" action="/api/cart/{{current_user._id}}" method="get">
+    <button type="submit" id="cart">Go to Cart</button>
+</form>
+{{/unless}}
+<form id="log_out" action="/api/products/" method="get">
+    <button type="submit" id="products">open catalog</button>
+    </form> 
+<form  style="margin-left: 15px;" id="log_out" action="/api/sessions/logout" method="post">
+    <button type="submit" id="log_out">Log Out</button>
+</form>
+
+</div>
+
+
+<div>
+        {{#each users.docs}}
+                <ul id={{this._id}}>
+                <h2>ID:{{this._id}} Name: {{this.name}}</h2>
+                <li>Last Name: {{this.last_name}}</li>
+                <li>email: {{this.email}}</li>
+                <li>age: {{this.age}} years Old</li>
+                <li>cart_id:{{this.cart_id}}</li>
+                <li>role: {{this.role}}</li>
+                <li>documents: {{this.documents}}</li>
+                <li>last connection: {{this.last_connection}}</li>
+                </ul>
+                 <form id="edit_user" action="/api/users/edit/{{this._id}}" method="get">
+                <button type="submit">Edit User Role</button>
+                </form>
+                {{#if this.inactive}}
+                <form id="check_delete" action="/api/users/delete/{{this._id}}" method="get">
+                    <button type="submit" value={{this._id}}>delete inactive user</button>
+                </form>
+                {{/if}}
+                </br>
+        {{/each}}
+</div>
+<br/>
+<div>
+    {{#if products.hasPrevPage}}
+        <a href={{products.prevLink}}><< BACK</a>
+    {{/if}}
+    &nbsp;
+    {{products.page}}
+    &nbsp;  
+     {{#if products.hasNextPage}}
+        <a href={{products.nextLink}}>NEXT >></a>
+    {{/if}} 
+</div>
+{{else}}
+<h1>No items available at this time </h1>
+{{/if}}
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="module" src="/js/users_index.js"></script>
+<link rel="stylesheet" href="/css/styles.css">
+
