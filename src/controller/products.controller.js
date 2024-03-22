@@ -201,8 +201,10 @@ ProuductRouter.get("/edit_items",async (req,res)=>{
     let page = parseInt(req.query.page);
     if(!page) page=1;
     const products = await product.paginate([{},{page,limit:10,lean:true}])
-    products.prevLink = products.hasPrevPage?`http://localhost:3000/api/products/edit_items/?page=${products.prevPage}`:'';
-    products.nextLink = products.hasNextPage?`http://localhost:3000/api/products/edit_items/?page=${products.nextPage}`:'';
+    //products.prevLink = products.hasPrevPage?`http://localhost:3000/api/products/edit_items/?page=${products.prevPage}`:'';
+    //products.nextLink = products.hasNextPage?`http://localhost:3000/api/products/edit_items/?page=${products.nextPage}`:'';
+    products.prevLink = products.hasPrevPage?`${window.location.host}/api/products/edit_items/?page=${products.prevPage}`:'';
+    products.nextLink = products.hasNextPage?`${window.location.host}/api/products/edit_items/?page=${products.nextPage}`:'';
     products.isValid= !(page<=0||page>products.totalPages)
     const current_user=req.session.user
 
