@@ -203,8 +203,8 @@ ProuductRouter.get("/edit_items",async (req,res)=>{
     const products = await product.paginate([{},{page,limit:10,lean:true}])
     //products.prevLink = products.hasPrevPage?`http://localhost:3000/api/products/edit_items/?page=${products.prevPage}`:'';
     //products.nextLink = products.hasNextPage?`http://localhost:3000/api/products/edit_items/?page=${products.nextPage}`:'';
-    products.prevLink = products.hasPrevPage?`${window.location.host}/api/products/edit_items/?page=${products.prevPage}`:'';
-    products.nextLink = products.hasNextPage?`${window.location.host}/api/products/edit_items/?page=${products.nextPage}`:'';
+    products.prevLink = products.hasPrevPage?`https://nookinc-project.onrender.com/api/products/edit_items/?page=${products.prevPage}`:'';
+    products.nextLink = products.hasNextPage?`https://nookinc-project.onrender.com/api/products/edit_items/?page=${products.nextPage}`:'';
     products.isValid= !(page<=0||page>products.totalPages)
     const current_user=req.session.user
 
@@ -318,11 +318,11 @@ ProuductRouter.get('/', async (req,res)=>{
         }
         ////////////////////////only missing limit but real limit and a normal query
         if (has_query){
-            products.prevLink = products.hasPrevPage?`http://localhost:3000/api/products/?${name_query}=${value_query}&page=${products.prevPage}`:'';
-            products.nextLink = products.hasNextPage?`http://localhost:3000/api/products/?${name_query}=${value_query}&page=${products.nextPage}`:'';
+            products.prevLink = products.hasPrevPage?`https://nookinc-project.onrender.com/api/products/?${name_query}=${value_query}&page=${products.prevPage}`:'';
+            products.nextLink = products.hasNextPage?`https://nookinc-project.onrender.com/api/products/?${name_query}=${value_query}&page=${products.nextPage}`:'';
         }else{
-        products.prevLink = products.hasPrevPage?`http://localhost:3000/api/products/?page=${products.prevPage}`:'';
-        products.nextLink = products.hasNextPage?`http://localhost:3000/api/products/?page=${products.nextPage}`:'';}
+        products.prevLink = products.hasPrevPage?`https://nookinc-project.onrender.com/api/products/?page=${products.prevPage}`:'';
+        products.nextLink = products.hasNextPage?`https://nookinc-project.onrender.com/api/products/?page=${products.nextPage}`:'';}
         products.isValid= !(page<=0||page>products.totalPages)
         //console.log("valid?", products.isValid)
         //console.log(products)       
