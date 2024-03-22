@@ -68,8 +68,8 @@ MockedProuductRouter.get("/edit_items",async (req,res)=>{
     let page = parseInt(req.query.page);
     if(!page) page=1;
     const products = await product.paginate([{},{page,limit:10,lean:true}])
-    products.prevLink = products.hasPrevPage?`http://localhost:3000/mockingproducts/edit_items/?page=${products.prevPage}`:'';
-    products.nextLink = products.hasNextPage?`http://localhost:3000/mockingproducts/edit_items/?page=${products.nextPage}`:'';
+    products.prevLink = products.hasPrevPage?`https://nookinc-project.onrender.com/mockingproducts/edit_items/?page=${products.prevPage}`:'';
+    products.nextLink = products.hasNextPage?`https://nookinc-project.onrender.com/mockingproducts/edit_items/?page=${products.nextPage}`:'';
     products.isValid= !(page<=0||page>products.totalPages)
     const current_user=req.session.user
 
@@ -154,11 +154,11 @@ MockedProuductRouter.get('/', async (req,res)=>{
         }
         ////////////////////////only missing limit but real limit and a normal query
         if (has_query){
-            products.prevLink = products.hasPrevPage?`http://localhost:3000/mockingproducts/?${name_query}=${value_query}&page=${products.prevPage}`:'';
-            products.nextLink = products.hasNextPage?`http://localhost:3000/mockingproducts/?${name_query}=${value_query}&page=${products.nextPage}`:'';
+            products.prevLink = products.hasPrevPage?`https://nookinc-project.onrender.com/mockingproducts/?${name_query}=${value_query}&page=${products.prevPage}`:'';
+            products.nextLink = products.hasNextPage?`https://nookinc-project.onrender.com/mockingproducts/?${name_query}=${value_query}&page=${products.nextPage}`:'';
         }else{
-        products.prevLink = products.hasPrevPage?`http://localhost:3000/mockingproducts/?page=${products.prevPage}`:'';
-        products.nextLink = products.hasNextPage?`http://localhost:3000/mockingproducts/?page=${products.nextPage}`:'';}
+        products.prevLink = products.hasPrevPage?`https://nookinc-project.onrender.com/mockingproducts/?page=${products.prevPage}`:'';
+        products.nextLink = products.hasNextPage?`https://nookinc-project.onrender.com/mockingproducts/?page=${products.nextPage}`:'';}
         products.isValid= !(page<=0||page>products.totalPages)
         //console.log("valid?", products.isValid)
         //console.log(products)
