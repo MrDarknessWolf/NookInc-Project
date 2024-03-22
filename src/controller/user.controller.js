@@ -270,8 +270,8 @@ UserRouter.get("/current", async (req,res) =>{
     console.log(documents)
     let DestinyPath
     let flag =0
-    console.log(documents[0].length)
-    if(documents[0].length<=0){
+    console.log(documents.length)
+    if(documents.length<=0){
       DestinyPath=false
     }
     else{
