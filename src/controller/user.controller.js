@@ -73,8 +73,8 @@ for(const usr of users.docs){
 }
 //console.log(users.docs)
 
-users.prevLink = users.hasPrevPage?`http://localhost:3000/api/users/?page=${users.prevPage}`:'';
-users.nextLink = users.hasNextPage?`http://localhost:3000/api/users/?page=${users.nextPage}`:'';
+users.prevLink = users.hasPrevPage?`https://nookinc-project.onrender.com/api/users/?page=${users.prevPage}`:'';
+users.nextLink = users.hasNextPage?`https://nookinc-project.onrender.com/api/users/?page=${users.nextPage}`:'';
 users.isValid= !(page<=0||page>users.totalPages)
 res.render('index',{
   layout:'users'
